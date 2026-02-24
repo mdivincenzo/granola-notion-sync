@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.granola.notion-sync</string>
+    <key>ProgramArguments</key>
+    <array>
+        <!-- Update this path to match your username -->
+        <string>/Users/YOUR_USERNAME/granola-venv/bin/python</string>
+        <string>/Users/YOUR_USERNAME/granola-notion-sync/daily-briefing.py</string>
+    </array>
+    <key>WatchPaths</key>
+    <array>
+        <!-- Triggers when Granola saves a meeting -->
+        <string>/Users/YOUR_USERNAME/Library/Application Support/Granola/cache-v3.json</string>
+    </array>
+    <!-- Minimum 120 seconds between runs to avoid rapid-fire triggers -->
+    <key>ThrottleInterval</key>
+    <integer>120</integer>
+    <key>StandardOutPath</key>
+    <string>/tmp/granola-notion-sync.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/granola-notion-sync.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+        <!-- API keys are injected via PlistBuddy during setup (see README Step 9) -->
+    </dict>
+</dict>
+</plist>
