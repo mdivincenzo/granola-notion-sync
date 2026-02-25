@@ -23,7 +23,7 @@ from anthropic import Anthropic
 # ── Config ──────────────────────────────────────────────────────────────────
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 NOTION_API_KEY = os.environ.get("NOTION_API_KEY")
-DATABASE_ID = "YOUR_DATABASE_ID_HERE"  # <-- Replace with your database ID
+DATABASE_ID = "31126a55d11b803cb0fdeeaba6bb2be5"  # <-- Replace with your database ID
 NOTES_DIR = os.path.expanduser("~/Documents/granola-daily")
 
 NOTION_HEADERS = {
@@ -56,7 +56,7 @@ def get_open_items():
     while has_more:
         payload = {
             "filter": {
-                "property": "Status",
+                "property": "status",
                 "checkbox": {"equals": False}
             },
             "page_size": 100
@@ -128,7 +128,7 @@ def push_item_to_notion(item):
         "Name": {
             "title": [{"text": {"content": item["description"]}}]
         },
-        "Status": {"checkbox": False},
+        "status": {"checkbox": False},
         "Category": {
             "select": {"name": CATEGORY_MAP.get(item.get("category", "action"), "Action")}
         },
@@ -213,7 +213,7 @@ Rules:
 - Return ONLY valid JSON. No markdown, no explanation, no code fences."""
 
     response = client.messages.create(
-        model="claude-sonnet-4-5-20250929",
+        model="claude-haiku-4-5-20251001",
         max_tokens=2000,
         messages=[{"role": "user", "content": prompt}]
     )
